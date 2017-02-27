@@ -134,7 +134,7 @@
             
   <h1>Source code for pycoshark.mongomodels</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">StringField</span><span class="p">,</span> <span class="n">ListField</span><span class="p">,</span> <span class="n">DateTimeField</span><span class="p">,</span> <span class="n">IntField</span><span class="p">,</span> <span class="n">BooleanField</span><span class="p">,</span> <span class="n">ObjectIdField</span><span class="p">,</span> \
-    <span class="n">DictField</span>
+    <span class="n">DictField</span><span class="p">,</span> <span class="n">DynamicField</span>
 
 
 <div class="viewcode-block" id="Project"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.Project">[docs]</a><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
@@ -354,8 +354,8 @@
 <span class="sd">    :property created_at: (:class:`~mongoengine.fields.DateTimeField`)  date when the event was created</span>
 <span class="sd">    :property status: (:class:`~mongoengine.fields.StringField`) shows, what part of the issue was changed</span>
 <span class="sd">    :property author_id: (:class:`~mongoengine.fields.ObjectIdField`) id of the :class:`~pycoshark.mongomodels.People` document that created the event</span>
-<span class="sd">    :property old_value: (:class:`~mongoengine.fields.StringField`) value before the event happened</span>
-<span class="sd">    :property new_value: (:class:`~mongoengine.fields.StringField`) value after the event happened</span>
+<span class="sd">    :property old_value: (:class:`~mongoengine.fields.DynamicField`) value before the event happened</span>
+<span class="sd">    :property new_value: (:class:`~mongoengine.fields.DynamicField`) value after the event happened</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
@@ -376,8 +376,8 @@
     <span class="n">status</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
     <span class="n">author_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">()</span>
 
-    <span class="n">old_value</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">new_value</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+    <span class="n">old_value</span> <span class="o">=</span> <span class="n">DynamicField</span><span class="p">()</span>
+    <span class="n">new_value</span> <span class="o">=</span> <span class="n">DynamicField</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;external_id: </span><span class="si">%s</span><span class="s2">, issue_id: </span><span class="si">%s</span><span class="s2">, created_at: </span><span class="si">%s</span><span class="s2">, status: </span><span class="si">%s</span><span class="s2">, author_id: </span><span class="si">%s</span><span class="s2">, &quot;</span> \
