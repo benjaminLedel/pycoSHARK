@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -87,7 +89,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">1. API Documentation</a></li>
 </ul>
 
@@ -692,7 +697,7 @@
 
     <span class="n">vcs_system_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">revision_hash</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique_with</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;vcs_system_id&#39;</span><span class="p">])</span>
-    <span class="n">branches</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">))</span>
+    <span class="n">branches</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">),</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">parents</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">))</span>
     <span class="n">author_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">()</span>
     <span class="n">author_date</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">()</span>
