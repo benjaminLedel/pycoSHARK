@@ -168,7 +168,7 @@
     <span class="n">annotation_desc</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">())</span>
     <span class="n">tags</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">())</span>
     <span class="n">started_at</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">()</span>
-    <span class="n">finished_at</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">finished_at</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">()</span>
     <span class="n">number</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">failed_tests</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">())</span>
     <span class="n">errored_tests</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">())</span>
@@ -193,7 +193,7 @@
     <span class="n">event_type</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">duration</span> <span class="o">=</span> <span class="n">LongField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">started_at</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-    <span class="n">finished_at</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">finished_at</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">pr_number</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">()</span>
     <span class="c1"># config</span>
     <span class="n">jobs</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">TravisJob</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
