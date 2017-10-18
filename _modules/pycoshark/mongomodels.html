@@ -163,18 +163,25 @@
 
 
 <span class="k">class</span> <span class="nc">TravisJob</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">state</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">allow_failure</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">annotation_desc</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">())</span>
     <span class="n">tags</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">())</span>
     <span class="n">started_at</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">()</span>
     <span class="n">finished_at</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">()</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">failed_tests</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">())</span>
     <span class="n">errored_tests</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">())</span>
     <span class="n">test_framework</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
     <span class="n">tests_run</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">()</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;TravisJob number:</span><span class="si">%s</span><span class="s2"> state:</span><span class="si">%s</span><span class="s2"> allow_failure:</span><span class="si">%s</span><span class="s2"> annotation_desc:</span><span class="si">%s</span><span class="s2"> tags:</span><span class="si">%s</span><span class="s2"> started_at:</span><span class="si">%s</span><span class="s2"> &quot;</span> \
+               <span class="s2">&quot;finished_at:</span><span class="si">%s</span><span class="s2"> failed_tests:</span><span class="si">%s</span><span class="s2"> errored_tests:</span><span class="si">%s</span><span class="s2"> test_framework:</span><span class="si">%s</span><span class="s2"> test_run:</span><span class="si">%s</span><span class="s2"> config:</span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> \
+               <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_failure</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">annotation_desc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">started_at</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">finished_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">failed_tests</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">errored_tests</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_framework</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tests_run</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">TravisBuild</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
