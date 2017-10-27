@@ -296,8 +296,8 @@ Inherits from <a class="reference external" href="http://docs.mongoengine.org/ap
 <dl class="class">
 <dt id="pycoshark.mongomodels.Commit">
 <em class="property">class </em><code class="descclassname">pycoshark.mongomodels.</code><code class="descname">Commit</code><span class="sig-paren">(</span><em>*args</em>, <em>**values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycoshark/mongomodels.html#Commit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycoshark.mongomodels.Commit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Commit class.
-Inherits from <a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.Document" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">mongoengine.Document</span></code></a>.</p>
+<dd><p>Commit class.</p>
+<p>Inherits from <a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.Document" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">mongoengine.Document</span></code></a>.</p>
 <p>Index: vcs_system_id</p>
 <p>ShardKey: revision_hash, vcs_system_id</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -336,6 +336,12 @@ Inherits from <a class="reference external" href="http://docs.mongoengine.org/ap
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">Property message:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body">(<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.StringField" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">StringField</span></code></a>) message of the commit</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Property linked_issue_ids:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">((<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.ListField" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">ListField</span></code></a> of (<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.ObjectIdField" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">ObjectIdField</span></code></a>))  <a class="reference internal" href="#pycoshark.mongomodels.Issue" title="pycoshark.mongomodels.Issue"><code class="xref py py-class docutils literal"><span class="pre">Issue</span></code></a> ids linked to this commit</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Property labels:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">(<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.DictField" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">DictField</span></code></a>) dictionary of different labels for this commit</td>
 </tr>
 </tbody>
 </table>
@@ -736,6 +742,30 @@ Inherits from <a class="reference external" href="http://docs.mongoengine.org/ap
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">Property date_offset:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body">(<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.IntField" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">IntField</span></code></a>)  offset for the date</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pycoshark.mongomodels.TestState">
+<em class="property">class </em><code class="descclassname">pycoshark.mongomodels.</code><code class="descname">TestState</code><span class="sig-paren">(</span><em>*args</em>, <em>**values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycoshark/mongomodels.html#TestState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycoshark.mongomodels.TestState" title="Permalink to this definition">¶</a></dt>
+<dd><p>TestState class.</p>
+<p>Inherits from <a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.Document" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">mongoengine.Document</span></code></a>.</p>
+<p>Index: long_name, commit_id, file_id</p>
+<p>ShardKey: shard_key long_name, commit_id, file_id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Property long_name:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">(<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.StringField" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">StringField</span></code></a>) long name of the TestState</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Property commit_id:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">(<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.ObjectIdField" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">ObjectIdField</span></code></a>) <a class="reference internal" href="#pycoshark.mongomodels.Commit" title="pycoshark.mongomodels.Commit"><code class="xref py py-class docutils literal"><span class="pre">Commit</span></code></a> id to which this state belongs</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Property file_id:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">(<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.ObjectIdField" title="(in MongoEngine v0.14.3)"><code class="xref py py-class docutils literal"><span class="pre">ObjectIdField</span></code></a>) <a class="reference internal" href="#pycoshark.mongomodels.File" title="pycoshark.mongomodels.File"><code class="xref py py-class docutils literal"><span class="pre">File</span></code></a> id to which this state refers to</td>
 </tr>
 </tbody>
 </table>
