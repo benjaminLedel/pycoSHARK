@@ -162,6 +162,17 @@
     <span class="n">DictField</span><span class="p">,</span> <span class="n">DynamicField</span><span class="p">,</span> <span class="n">LongField</span><span class="p">,</span> <span class="n">EmbeddedDocument</span><span class="p">,</span> <span class="n">EmbeddedDocumentField</span>
 
 
+<span class="k">class</span> <span class="nc">Identity</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;indexes&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;#id&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="n">people</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span>
+
+
 <span class="k">class</span> <span class="nc">TravisJob</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
     <span class="n">number</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">state</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
