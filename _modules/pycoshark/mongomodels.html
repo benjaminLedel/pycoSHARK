@@ -159,7 +159,7 @@
             
   <h1>Source code for pycoshark.mongomodels</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">StringField</span><span class="p">,</span> <span class="n">ListField</span><span class="p">,</span> <span class="n">DateTimeField</span><span class="p">,</span> <span class="n">IntField</span><span class="p">,</span> <span class="n">BooleanField</span><span class="p">,</span> <span class="n">ObjectIdField</span><span class="p">,</span> \
-    <span class="n">DictField</span><span class="p">,</span> <span class="n">DynamicField</span><span class="p">,</span> <span class="n">LongField</span><span class="p">,</span> <span class="n">EmbeddedDocument</span><span class="p">,</span> <span class="n">EmbeddedDocumentField</span>
+    <span class="n">DictField</span><span class="p">,</span> <span class="n">DynamicField</span><span class="p">,</span> <span class="n">LongField</span><span class="p">,</span> <span class="n">EmbeddedDocument</span><span class="p">,</span> <span class="n">EmbeddedDocumentField</span><span class="p">,</span> <span class="n">FileField</span>
 
 
 <span class="k">class</span> <span class="nc">Identity</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
@@ -938,6 +938,44 @@
     <span class="n">clone_instance_metrics</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">clone_class</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">clone_class_metrics</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MynbouData"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.MynbouData">[docs]</a><span class="k">class</span> <span class="nc">MynbouData</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    MynbouData</span>
+<span class="sd">    Inherits from :class:`mongoengine.Document`.</span>
+
+<span class="sd">    Index: vcs_sytem_id</span>
+
+<span class="sd">    ShardKey: name, vcs_system_id</span>
+
+
+<span class="sd">    :property vcs_system_id: (:class:`~mongoengine.fields.ObjectIdField`) :class:`~pycoshark.mongomodels.VCSSystem` id to which this clone instance belongs</span>
+<span class="sd">    :property name: (:class:`~mongoengine.fields.StringField`) identifier of the product, e.g, the version 1.3</span>
+<span class="sd">    :property path_approach: (:class:`~mongoengine.fields.StringField`) name of the approach used for detecting the path for labeling</span>
+<span class="sd">    :property metric_approach: (:class:`~mongoengine.fields.StringField`) name of the approach used for metric creation and aggregation</span>
+<span class="sd">    :property bugfix_label: (:class:`~mongoengine.fields.StringField`) name of the commit label that is used to determine bug-fixing commits.</span>
+<span class="sd">    :property file: (:class:`~mongoengine.fields.FileField`) JSON File containing the product.</span>
+<span class="sd">    :property last_updated: (:class:`~mongoengine.fields.DateTimeField`) time of creation of this product</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;indexes&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;vcs_system_id&#39;</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;vcs_system_id&#39;</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="c1"># PK: name, vcs_system_id, path_approach, bugfix_label, metrics_approach</span>
+    <span class="c1"># Shard Key: name, vcs_system_id</span>
+
+    <span class="n">vcs_system_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique_with</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;vcs_system_id&#39;</span><span class="p">,</span> <span class="s1">&#39;path_approach&#39;</span><span class="p">,</span> <span class="s1">&#39;bugfix_label&#39;</span><span class="p">,</span> <span class="s1">&#39;metric_approach&#39;</span><span class="p">])</span>
+    <span class="n">path_approach</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">bugfix_label</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">metric_approach</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">FileField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">last_updated</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
