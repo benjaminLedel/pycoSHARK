@@ -747,6 +747,32 @@ Inherits from <a class="reference external" href="http://docs.mongoengine.org/ap
 </dd></dl>
 
 <dl class="class">
+<dt id="pycoshark.mongomodels.Refactoring">
+<em class="property">class </em><code class="descclassname">pycoshark.mongomodels.</code><code class="descname">Refactoring</code><span class="sig-paren">(</span><em>*args</em>, <em>**values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycoshark/mongomodels.html#Refactoring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycoshark.mongomodels.Refactoring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inherits from <a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.Document" title="(in MongoEngine v0.15.0)"><code class="xref py py-class docutils literal"><span class="pre">mongoengine.Document</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Property ce_state:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">(<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.DictField" title="(in MongoEngine v0.15.0)"><code class="xref py py-class docutils literal"><span class="pre">DictField</span></code></a>) The code entity state of changed enteties in the current commit.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Property commit_id:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">(<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.ObjectIdField" title="(in MongoEngine v0.15.0)"><code class="xref py py-class docutils literal"><span class="pre">ObjectIdField</span></code></a>) <a class="reference internal" href="#pycoshark.mongomodels.Commit" title="pycoshark.mongomodels.Commit"><code class="xref py py-class docutils literal"><span class="pre">Commit</span></code></a> id in which this refactoring occured</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Property description:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">(<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.StringField" title="(in MongoEngine v0.15.0)"><code class="xref py py-class docutils literal"><span class="pre">StringField</span></code></a>) The description of the refactoring provided by RefDiff.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Property parent_commit_ce_states:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">((<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.ListField" title="(in MongoEngine v0.15.0)"><code class="xref py py-class docutils literal"><span class="pre">ListField</span></code></a> of (<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.DictField" title="(in MongoEngine v0.15.0)"><code class="xref py py-class docutils literal"><span class="pre">DictField</span></code></a>)) The code entity states of changed enteties in the parent commits.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Property type:</th><td class="field-body">(<a class="reference external" href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.StringField" title="(in MongoEngine v0.15.0)"><code class="xref py py-class docutils literal"><span class="pre">StringField</span></code></a>) Name of the refactoring type.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
 <dt id="pycoshark.mongomodels.Tag">
 <em class="property">class </em><code class="descclassname">pycoshark.mongomodels.</code><code class="descname">Tag</code><span class="sig-paren">(</span><em>*args</em>, <em>**values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycoshark/mongomodels.html#Tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycoshark.mongomodels.Tag" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tag class.
