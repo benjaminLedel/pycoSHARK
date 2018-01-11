@@ -194,7 +194,7 @@
 
 
 <span class="k">class</span> <span class="nc">TravisJob</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
-    <span class="n">tr_id</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">tr_id</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">allow_failure</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">number</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">state</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -216,14 +216,15 @@
         <span class="s1">&#39;indexes&#39;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s1">&#39;number&#39;</span><span class="p">,</span>
             <span class="p">(</span><span class="s1">&#39;vcs_system_id&#39;</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;tr_id&#39;</span>
         <span class="p">],</span>
-        <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;vcs_system_id&#39;</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;tr_id&#39;</span><span class="p">,),</span>
     <span class="p">}</span>
 
-    <span class="n">tr_id</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">vcs_system_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">unique_with</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;number&#39;</span><span class="p">])</span>
+    <span class="n">tr_id</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">vcs_system_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">()</span>
     <span class="n">commit_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">()</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique_with</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;vcs_system_id&#39;</span><span class="p">])</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">state</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">duration</span> <span class="o">=</span> <span class="n">LongField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">event_type</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
