@@ -25,25 +25,17 @@
   
 
   
-  
     <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="pycoSHARK 1.0.0 documentation" href="../../index.html"/>
-        <link rel="up" title="Module code" href="../index.html"/> 
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -60,7 +52,7 @@
 
           
             
-            <img src="../../_static/SmartSHARK_read_the_docs_logo.png" class="logo" />
+            <img src="../../_static/SmartSHARK_read_the_docs_logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -105,7 +97,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">pycoSHARK</a>
@@ -113,9 +105,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -144,8 +137,6 @@
     
     
       <li class="wy-breadcrumbs-aside">
-        
-            
         
       </li>
     
@@ -182,7 +173,7 @@
     <span class="nb">type</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span></div>
 
 
-<span class="k">class</span> <span class="nc">Identity</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+<div class="viewcode-block" id="Identity"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.Identity">[docs]</a><span class="k">class</span> <span class="nc">Identity</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
     <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;indexes&#39;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s1">&#39;#id&#39;</span><span class="p">,</span>
@@ -190,10 +181,10 @@
         <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">),</span>
     <span class="p">}</span>
 
-    <span class="n">people</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span>
+    <span class="n">people</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span></div>
 
 
-<span class="k">class</span> <span class="nc">TravisJob</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
+<div class="viewcode-block" id="TravisJob"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.TravisJob">[docs]</a><span class="k">class</span> <span class="nc">TravisJob</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
     <span class="n">tr_id</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">allow_failure</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">number</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -208,10 +199,10 @@
         <span class="k">return</span> <span class="s2">&quot;&lt;TravisJob allow_failure:</span><span class="si">%s</span><span class="s2"> number:</span><span class="si">%s</span><span class="s2"> state:</span><span class="si">%s</span><span class="s2"> started_at:</span><span class="si">%s</span><span class="s2"> finished_at:</span><span class="si">%s</span><span class="s2"> stages:</span><span class="si">%s</span><span class="s2"> metrics:</span><span class="si">%s</span><span class="s2"> &quot;</span> \
                <span class="s2">&quot;config:</span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> \
                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_failure</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">started_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">finished_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">TravisBuild</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+<div class="viewcode-block" id="TravisBuild"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.TravisBuild">[docs]</a><span class="k">class</span> <span class="nc">TravisBuild</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
     <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;indexes&#39;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s1">&#39;number&#39;</span><span class="p">,</span>
@@ -238,7 +229,7 @@
         <span class="k">return</span> <span class="s2">&quot;&lt;TravisBuild vcs_system_id:</span><span class="si">%s</span><span class="s2"> commit_id:</span><span class="si">%s</span><span class="s2"> number:</span><span class="si">%s</span><span class="s2"> duration:</span><span class="si">%s</span><span class="s2"> event_type:</span><span class="si">%s</span><span class="s2"> &quot;</span> \
                <span class="s2">&quot;pr_number:</span><span class="si">%s</span><span class="s2"> started_at:</span><span class="si">%s</span><span class="s2"> finished_at:</span><span class="si">%s</span><span class="s2"> stages:</span><span class="si">%s</span><span class="s2"> jobs:</span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> \
                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vcs_system_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">commit_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pr_number</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">started_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">finished_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">started_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">finished_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Project"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.Project">[docs]</a><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
@@ -476,20 +467,22 @@
     <span class="n">created_at</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">()</span>
     <span class="n">status</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
     <span class="n">author_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">()</span>
+    <span class="n">commit_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">()</span>
 
     <span class="n">old_value</span> <span class="o">=</span> <span class="n">DynamicField</span><span class="p">()</span>
     <span class="n">new_value</span> <span class="o">=</span> <span class="n">DynamicField</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;external_id: </span><span class="si">%s</span><span class="s2">, issue_id: </span><span class="si">%s</span><span class="s2">, created_at: </span><span class="si">%s</span><span class="s2">, status: </span><span class="si">%s</span><span class="s2">, author_id: </span><span class="si">%s</span><span class="s2">, &quot;</span> \
-               <span class="s2">&quot;old_value: </span><span class="si">%s</span><span class="s2">, new_value: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+               <span class="s2">&quot;old_value: </span><span class="si">%s</span><span class="s2">, new_value: </span><span class="si">%s</span><span class="s2">, commit_id: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">external_id</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">issue_id</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">author_id</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">old_value</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">new_value</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">new_value</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">commit_id</span>
                <span class="p">)</span></div>
 
 
@@ -764,7 +757,8 @@
 <span class="sd">    :property committer_date_offset: (:class:`~mongoengine.fields.IntField`)  offset for the committer date</span>
 <span class="sd">    :property message: (:class:`~mongoengine.fields.StringField`) message of the commit</span>
 <span class="sd">    :property linked_issue_ids: ((:class:`~mongoengine.fields.ListField` of (:class:`~mongoengine.fields.ObjectIdField`))  :class:`~pycoshark.mongomodels.Issue` ids linked to this commit</span>
-<span class="sd">    :property labels: (:class:`~mongoengine.fields.DictField`) dictionary of different labels for this commit</span>
+<span class="sd">    :property code_entity_states: ((:class:`~mongoengine.fields.ListField` of (:class:`~mongoengine.fields.ObjectIdField`))  :class:`~pycoshark.mongomodels.CodeEntityState` code entity states for this commit</span>
+<span class="sd">    :property labels: (:class:`~mongoengine.fields.DictField`) dictionary of different labels for this commit, is_bugfix etc.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -790,44 +784,127 @@
     <span class="n">committer_date_offset</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">()</span>
     <span class="n">message</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
     <span class="n">linked_issue_ids</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span>
+    <span class="n">code_entity_states</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span>
     <span class="n">labels</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Branch"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.Branch">[docs]</a><span class="k">class</span> <span class="nc">Branch</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Branch class.</span>
+
+<span class="sd">    Inherits from :class:`mongoengine.Document`.</span>
+
+<span class="sd">    Index: vcs_system_id</span>
+
+<span class="sd">    ShardKey: name, vcs_system_id</span>
+
+<span class="sd">    :property vcs_system_id: (:class:`~mongoengine.fields.ObjectIdField`) :class:`~pycoshark.mongomodels.VCSSystem` id to which this branch belongs</span>
+<span class="sd">    :property commit_id: (:class:`~mongoengine.fields.ObjectIdField`) target commit of the branch (last commit on that branch)</span>
+<span class="sd">    :property name: (:class:`~mongoengine.fields.StringField`) name of the branch</span>
+<span class="sd">    :property is_origin_head: (:class:`~mongoengine.fields.BooleanField`) if this branch is the default origin branch (usually master)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;indexes&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;vcs_system_id&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;vcs_system_id&#39;</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="c1"># PK: name, vcs_system_id</span>
+    <span class="c1"># Shard Key: name, vcs_system_id</span>
+
+    <span class="n">vcs_system_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">commit_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique_with</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;vcs_system_id&#39;</span><span class="p">])</span>
+    <span class="n">is_origin_head</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Mutation"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.Mutation">[docs]</a><span class="k">class</span> <span class="nc">Mutation</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;location&#39;</span><span class="p">,</span> <span class="s1">&#39;m_type&#39;</span><span class="p">,</span> <span class="s1">&#39;l_num&#39;</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="n">location</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique_with</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;m_type&#39;</span><span class="p">,</span> <span class="s1">&#39;l_num&#39;</span><span class="p">])</span>
+    <span class="n">m_type</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">l_num</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">classification</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">l_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">classification</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">m_type</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">l_num</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">classification</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">m_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">l_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">classification</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="MutationResult"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.MutationResult">[docs]</a><span class="k">class</span> <span class="nc">MutationResult</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
+    <span class="n">mutation_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestState"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.TestState">[docs]</a><span class="k">class</span> <span class="nc">TestState</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    TestState class.</span>
+<span class="sd">        TestState class.</span>
 
-<span class="sd">    Inherits from :class:`mongoengine.Document`.</span>
+<span class="sd">        Inherits from :class:`mongoengine.Document`.</span>
 
-<span class="sd">    Index: long_name, commit_id, file_id</span>
+<span class="sd">        Index: name, commit_id, file_id</span>
 
-<span class="sd">    ShardKey: shard_key long_name, commit_id, file_id</span>
+<span class="sd">        ShardKey: shard_key name, commit_id, file_id</span>
 
-<span class="sd">    :property long_name: (:class:`~mongoengine.fields.StringField`) long name of the TestState</span>
-<span class="sd">    :property commit_id: (:class:`~mongoengine.fields.ObjectIdField`) :class:`~pycoshark.mongomodels.Commit` id to which this state belongs</span>
-<span class="sd">    :property file_id: (:class:`~mongoengine.fields.ObjectIdField`) :class:`~pycoshark.mongomodels.File` id to which this state refers to</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        :property name: (:class:`~mongoengine.fields.StringField`) name of the TestState, e.g. de.ugoe.cs.Class.blub</span>
+<span class="sd">        :property commit_id: (:class:`~mongoengine.fields.ObjectIdField`) :class:`~pycoshark.mongomodels.Commit` id to which this state belongs</span>
+<span class="sd">        :property file_id: (:class:`~mongoengine.fields.ObjectIdField`) :class:`~pycoshark.mongomodels.File` id to which this state refers to</span>
+<span class="sd">        :property metrics: (:class:`~mongoengine.fields.DictField`) metrics for the test state</span>
+<span class="sd">        :property mutations: ((:class:`~mongoengine.fields.ListField` of Mutations) with extra information about mutations</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;indexes&#39;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s1">&#39;commit_id&#39;</span><span class="p">,</span>
         <span class="p">],</span>
-        <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;long_name&#39;</span><span class="p">,</span> <span class="s1">&#39;commit_id&#39;</span><span class="p">,</span> <span class="s1">&#39;file_id&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;commit_id&#39;</span><span class="p">,</span> <span class="s1">&#39;file_id&#39;</span><span class="p">),</span>
     <span class="p">}</span>
 
     <span class="c1"># PK: long_name, commit_id, file_id</span>
     <span class="c1"># Shard Key: long_name, commit_id, file_id</span>
 
-    <span class="n">long_name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique_with</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;commit_id&#39;</span><span class="p">,</span> <span class="s1">&#39;file_id&#39;</span><span class="p">])</span>
-    <span class="n">commit_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique_with</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;commit_id&#39;</span><span class="p">,</span> <span class="s1">&#39;file_id&#39;</span><span class="p">])</span>
     <span class="n">file_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">file_type</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">depends_on_ids</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span>
-    <span class="n">direct_imp_ids</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span>
-    <span class="n">mock_cut_dep_ids</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span>
-    <span class="n">mocked_modules_ids</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span>
-    <span class="n">uses_mock</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">()</span>
-    <span class="n">error</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">()</span></div>
+    <span class="n">commit_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">()</span>
+    <span class="n">mutation_res</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">MutationResult</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CommitChanges"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.CommitChanges">[docs]</a><span class="k">class</span> <span class="nc">CommitChanges</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        CommitChanges class.</span>
+
+<span class="sd">        Inherits from :class:`mongoengine.Document`.</span>
+
+<span class="sd">        Index: old_commit_id, new_commit_id</span>
+
+<span class="sd">        ShardKey: id</span>
+
+<span class="sd">        :property old_commit_id: (:class:`~mongoengine.fields.ObjectIdField`) :class:`~pycoshark.mongomodels.Commit` id to which this state belongs (older in revision system)</span>
+<span class="sd">        :property new_commit_id: (:class:`~mongoengine.fields.ObjectIdField`) :class:`~pycoshark.mongomodels.Commit` id to which this state belongs (newer in revision system)</span>
+<span class="sd">        :property classification: (:class:`~mongoengine.fields.DictField`) classification for the changes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;indexes&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;old_commit_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;new_commit_id&#39;</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="c1"># PK: old_commit_id, new_commit_id</span>
+    <span class="c1"># Shard Key: id</span>
+
+    <span class="n">old_commit_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique_with</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;new_commit_id&#39;</span><span class="p">])</span>
+    <span class="n">new_commit_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">classification</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="CodeEntityState"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.CodeEntityState">[docs]</a><span class="k">class</span> <span class="nc">CodeEntityState</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
@@ -1005,9 +1082,7 @@
 </pre></div>
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -1020,7 +1095,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1039,6 +1114,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
             VERSION:'1.0.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -1056,14 +1132,13 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
