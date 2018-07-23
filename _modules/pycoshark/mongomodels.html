@@ -24,8 +24,7 @@
 
   
 
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -150,7 +149,7 @@
             
   <h1>Source code for pycoshark.mongomodels</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">StringField</span><span class="p">,</span> <span class="n">ListField</span><span class="p">,</span> <span class="n">DateTimeField</span><span class="p">,</span> <span class="n">IntField</span><span class="p">,</span> <span class="n">BooleanField</span><span class="p">,</span> <span class="n">ObjectIdField</span><span class="p">,</span> \
-    <span class="n">DictField</span><span class="p">,</span> <span class="n">DynamicField</span><span class="p">,</span> <span class="n">LongField</span><span class="p">,</span> <span class="n">EmbeddedDocument</span><span class="p">,</span> <span class="n">EmbeddedDocumentField</span><span class="p">,</span> <span class="n">FileField</span>
+    <span class="n">DictField</span><span class="p">,</span> <span class="n">DynamicField</span><span class="p">,</span> <span class="n">LongField</span><span class="p">,</span> <span class="n">EmbeddedDocument</span><span class="p">,</span> <span class="n">EmbeddedDocumentField</span><span class="p">,</span> <span class="n">FileField</span><span class="p">,</span> <span class="n">FloatField</span>
 
 
 <div class="viewcode-block" id="Refactoring"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.Refactoring">[docs]</a><span class="k">class</span> <span class="nc">Refactoring</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
@@ -839,6 +838,8 @@
 
 <div class="viewcode-block" id="MutationResult"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.MutationResult">[docs]</a><span class="k">class</span> <span class="nc">MutationResult</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
     <span class="n">mutation_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">num_calls</span> <span class="o">=</span> <span class="n">LongField</span><span class="p">()</span>
+    <span class="n">call_depth</span> <span class="o">=</span> <span class="n">LongField</span><span class="p">()</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
@@ -872,6 +873,7 @@
     <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique_with</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;commit_id&#39;</span><span class="p">,</span> <span class="s1">&#39;file_id&#39;</span><span class="p">])</span>
     <span class="n">file_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">commit_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">execution_time</span> <span class="o">=</span> <span class="n">FloatField</span><span class="p">()</span>
     <span class="n">metrics</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">()</span>
     <span class="n">mutation_res</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">MutationResult</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span></div>
 
@@ -1127,16 +1129,11 @@
 
   
 
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script> 
 
