@@ -150,6 +150,7 @@
   <h1>Source code for pycoshark.mongomodels</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">StringField</span><span class="p">,</span> <span class="n">ListField</span><span class="p">,</span> <span class="n">DateTimeField</span><span class="p">,</span> <span class="n">IntField</span><span class="p">,</span> <span class="n">BooleanField</span><span class="p">,</span> <span class="n">ObjectIdField</span><span class="p">,</span> \
     <span class="n">DictField</span><span class="p">,</span> <span class="n">DynamicField</span><span class="p">,</span> <span class="n">LongField</span><span class="p">,</span> <span class="n">EmbeddedDocument</span><span class="p">,</span> <span class="n">EmbeddedDocumentField</span><span class="p">,</span> <span class="n">FileField</span><span class="p">,</span> <span class="n">FloatField</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
 
 
 <div class="viewcode-block" id="Refactoring"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.Refactoring">[docs]</a><span class="k">class</span> <span class="nc">Refactoring</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
@@ -550,7 +551,34 @@
     <span class="n">url</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">project_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">repository_type</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">last_updated</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">()</span></div>
+    <span class="n">last_updated</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">()</span>
+    <span class="n">submodules</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="VCSSubmodule"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.VCSSubmodule">[docs]</a><span class="k">class</span> <span class="nc">VCSSubmodule</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    VCSSubmodule class.</span>
+<span class="sd">    Inherits from :class:`mongoengine.Document`</span>
+
+<span class="sd">    Index: vcs_system_id</span>
+
+<span class="sd">    ShardKey: vcs_system_id</span>
+
+<span class="sd">    :property path: (:class:`~mongoengine.fields.StringField`) submodule path relative to the parent repository root</span>
+<span class="sd">    :property project_id: (:class:`~mongoengine.fields.ObjectIdField`) :class:`~pycoshark.mongomodels.VCSSystem` id of this submodule</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;collection&#39;</span><span class="p">:</span> <span class="s1">&#39;vcs_submodule&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;indexes&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;vcs_system_id&#39;</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;shard_key&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;vcs_system_id&#39;</span><span class="p">,</span> <span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="c1"># PK: vcs_system_id</span>
+    <span class="c1"># Shard Key: vcs_system_id</span>
+
+    <span class="n">vcs_system_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FileAction"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.FileAction">[docs]</a><span class="k">class</span> <span class="nc">FileAction</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
@@ -965,7 +993,15 @@
                <span class="s2">&quot;cg_ids:</span><span class="si">%s</span><span class="s2"> ce_type:</span><span class="si">%s</span><span class="s2"> imports:</span><span class="si">%s</span><span class="s2"> start_line:</span><span class="si">%s</span><span class="s2"> end_line:</span><span class="si">%s</span><span class="s2"> start_column:</span><span class="si">%s</span><span class="s2"> end_column: </span><span class="si">%s</span><span class="s2"> metrics: </span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> \
                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">s_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">long_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">commit_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ce_parent_id</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">cg_ids</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ce_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_line</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_line</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_column</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">end_column</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">end_column</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">calculate_identifier</span><span class="p">(</span><span class="n">long_name</span><span class="p">,</span> <span class="n">commit_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">):</span>
+        <span class="n">concat_string</span> <span class="o">=</span> <span class="n">long_name</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">commit_id</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">file_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">concat_string</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_identifier</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">long_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">commit_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_id</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="CodeGroupState"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.CodeGroupState">[docs]</a><span class="k">class</span> <span class="nc">CodeGroupState</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
@@ -997,7 +1033,15 @@
     <span class="n">commit_id</span> <span class="o">=</span> <span class="n">ObjectIdField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">cg_parent_ids</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ObjectIdField</span><span class="p">())</span>
     <span class="n">cg_type</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">metrics</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">()</span></div>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">()</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">calculate_identifier</span><span class="p">(</span><span class="n">long_name</span><span class="p">,</span> <span class="n">commit_id</span><span class="p">):</span>
+        <span class="n">concat_string</span> <span class="o">=</span> <span class="n">long_name</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">commit_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">concat_string</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_identifier</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">long_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">commit_id</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="CloneInstance"><a class="viewcode-back" href="../../api.html#pycoshark.mongomodels.CloneInstance">[docs]</a><span class="k">class</span> <span class="nc">CloneInstance</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
